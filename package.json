@@ -27,6 +27,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.28.0",
     "expo-cli": "5.0.3",
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "reactotron-react-native": "^5.0.2"
   }
 }

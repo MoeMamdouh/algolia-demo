@@ -5,6 +5,9 @@ import { InstantSearch } from 'react-instantsearch-native';
 import SearchBox from './src/SearchBox';
 import InfiniteHits from './src/InfiniteHits';
 
+if (__DEV__) {
+  import('./ReactotronConfig').then(() => console.log('Reactotron Configured'));
+}
 const searchClient = algoliasearch(
   'FHGWOFHPQW',
   'a66b02a8ea7088a0dce0efdca9eb348a'
