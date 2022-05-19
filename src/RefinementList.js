@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 });
 
 const RefinementList = ({ items, refine }) => {
-  console.log('items==>', items);
+  console.log('=items==>', items);
   return (
     <View style={styles.container}>
       <View style={styles.title}>

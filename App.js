@@ -1,9 +1,21 @@
-import React from 'react';
-import { StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
+import React, { useState } from 'react';
+
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  StatusBar,
+  Button,
+} from 'react-native';
+
 import algoliasearch from 'algoliasearch';
-import { InstantSearch } from 'react-instantsearch-native';
+import {
+  InstantSearch,
+  connectRefinementList,
+} from 'react-instantsearch-native';
 import SearchBox from './src/SearchBox';
 import InfiniteHits from './src/InfiniteHits';
+import Filters from './src/Filters';
 import RefinementList from './src/RefinementList';
 
 if (__DEV__) {
@@ -26,7 +38,14 @@ const styles = StyleSheet.create({
   },
 });
 
+const VirtualRefinementList = connectRefinementList(() => null);
+
 const App = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [searchState, setSearchState] = useState({});
+
+  const toggleModal = () => setModalOpen(!isModalOpen);
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" />
@@ -34,10 +53,21 @@ const App = () => {
         <InstantSearch
           searchClient={searchClient}
           indexName="international_flat_products"
+          searchState={searchState}
+          onSearchStateChange={setSearchState}
         >
+          <VirtualRefinementList attribute="brand_object.value_en" />
+
+          <Filters
+            isModalOpen={isModalOpen}
+            searchClient={searchClient}
+            searchState={searchState}
+            toggleModal={toggleModal}
+            onSearchStateChange={setSearchState}
+          />
           <SearchBox />
           <RefinementList attribute="brand_object.value_en" limit={5} />
-
+          <Button title="Filters" color="#252b33" onPress={toggleModal} />
           <InfiniteHits />
         </InstantSearch>
       </View>
