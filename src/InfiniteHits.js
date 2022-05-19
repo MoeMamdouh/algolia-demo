@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
   desc: {
     marginHorizontal: 20,
   },
+  brand: {
+    fontSize: 14,
+    fontWeight: '800',
+  },
 });
 
 const InfiniteHits = ({ hits, hasMore, refineNext }) => (
@@ -38,9 +42,10 @@ const InfiniteHits = ({ hits, hasMore, refineNext }) => (
 
         <View style={styles.desc}>
           <Text style={styles.titleText}>
-            <Highlight attribute="sku" hit={item} />
+            <Highlight attribute="sku" hit={item} /> ---{' '}
+            <Text>{item.objectID}</Text>
           </Text>
-          <Text>{item.objectID}</Text>
+          <Text style={styles.brand}>{item.brand_object.value_en}</Text>
           <Text>{item.name_en}</Text>
           <Text>{item.name_ar}</Text>
           <Text>{item.stores}</Text>

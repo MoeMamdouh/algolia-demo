@@ -4,6 +4,7 @@ import algoliasearch from 'algoliasearch';
 import { InstantSearch } from 'react-instantsearch-native';
 import SearchBox from './src/SearchBox';
 import InfiniteHits from './src/InfiniteHits';
+import RefinementList from './src/RefinementList';
 
 if (__DEV__) {
   import('./ReactotronConfig').then(() => console.log('Reactotron Configured'));
@@ -16,7 +17,8 @@ const searchClient = algoliasearch(
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#252b33',
+    backgroundColor: '#e93766',
+    marginBottom: 34,
   },
   container: {
     flex: 1,
@@ -34,6 +36,8 @@ const App = () => {
           indexName="international_flat_products"
         >
           <SearchBox />
+          <RefinementList attribute="brand_object.value_en" limit={5} />
+
           <InfiniteHits />
         </InstantSearch>
       </View>

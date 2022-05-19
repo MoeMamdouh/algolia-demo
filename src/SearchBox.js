@@ -6,7 +6,7 @@ import { connectSearchBox } from 'react-instantsearch-native';
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#252b33',
+    backgroundColor: '#e93766',
   },
   input: {
     height: 48,
@@ -27,7 +27,7 @@ const SearchBox = ({ currentRefinement, refine }) => (
   <View style={styles.container}>
     <TextInput
       style={styles.input}
-      onChangeText={value => refine(value)}
+      onChangeText={(value) => refine(value)}
       value={currentRefinement}
       placeholder=""
     />
